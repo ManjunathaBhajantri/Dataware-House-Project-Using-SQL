@@ -1,0 +1,82 @@
+Here’s a **clean, professional, and GitHub-ready version** of your **Gold Layer Data Catalog**. It improves formatting, consistency, and readability while following best practices used in real-world data projects.
+
+---
+
+# 📊 Data Catalog – Gold Layer
+
+## 📌 Overview
+
+The **Gold Layer** represents the **business-ready data model**, structured for analytical queries and reporting.
+It follows a **star schema design**, consisting of:
+
+* **Dimension Tables** → Descriptive attributes
+* **Fact Tables** → Measurable business metrics
+
+---
+
+## 🧑‍💼 1. `gold.dim_customers`
+
+**Purpose:**
+Stores enriched customer information, including demographic and geographic attributes.
+
+### 📋 Columns
+
+| Column Name       | Data Type    | Description                                             |
+| ----------------- | ------------ | ------------------------------------------------------- |
+| `customer_key`    | INT          | Surrogate key uniquely identifying each customer record |
+| `customer_id`     | INT          | Unique identifier assigned to each customer             |
+| `customer_number` | NVARCHAR(50) | Business identifier used for tracking customers         |
+| `first_name`      | NVARCHAR(50) | Customer's first name                                   |
+| `last_name`       | NVARCHAR(50) | Customer's last name                                    |
+| `country`         | NVARCHAR(50) | Customer’s country of residence                         |
+| `marital_status`  | NVARCHAR(50) | Marital status (e.g., Married, Single)                  |
+| `gender`          | NVARCHAR(50) | Gender (e.g., Male, Female, n/a)                        |
+| `birthdate`       | DATE         | Date of birth (YYYY-MM-DD)                              |
+| `create_date`     | DATE         | Record creation date                                    |
+
+---
+
+## 🛍️ 2. `gold.dim_products`
+
+**Purpose:**
+Provides detailed product information and classification for analysis.
+
+### 📋 Columns
+
+| Column Name            | Data Type    | Description                                   |
+| ---------------------- | ------------ | --------------------------------------------- |
+| `product_key`          | INT          | Surrogate key for each product                |
+| `product_id`           | INT          | Unique internal product identifier            |
+| `product_number`       | NVARCHAR(50) | Alphanumeric product code                     |
+| `product_name`         | NVARCHAR(50) | Descriptive product name                      |
+| `category_id`          | NVARCHAR(50) | Identifier for product category               |
+| `category`             | NVARCHAR(50) | High-level category (e.g., Bikes)             |
+| `subcategory`          | NVARCHAR(50) | Detailed product classification               |
+| `maintenance_required` | NVARCHAR(50) | Indicates if maintenance is required (Yes/No) |
+| `cost`                 | INT          | Base product cost                             |
+| `product_line`         | NVARCHAR(50) | Product line (e.g., Road, Mountain)           |
+| `start_date`           | DATE         | Product availability start date               |
+
+---
+
+## 💰 3. `gold.fact_sales`
+
+**Purpose:**
+Stores transactional sales data used for business analysis and reporting.
+
+### 📋 Columns
+
+| Column Name     | Data Type    | Description                    |
+| --------------- | ------------ | ------------------------------ |
+| `order_number`  | NVARCHAR(50) | Unique sales order identifier  |
+| `product_key`   | INT          | Foreign key to `dim_products`  |
+| `customer_key`  | INT          | Foreign key to `dim_customers` |
+| `order_date`    | DATE         | Date when order was placed     |
+| `shipping_date` | DATE         | Date when order was shipped    |
+| `due_date`      | DATE         | Payment due date               |
+| `sales_amount`  | INT          | Total sales value              |
+| `quantity`      | INT          | Number of units sold           |
+| `price`         | INT          | Price per unit                 |
+
+
+
